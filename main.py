@@ -8,11 +8,11 @@ Team, pizzaCount, ingredient, ingredientNum = Read_File("a_example")
 
 # team[i][0] : i팀 인원
 # team[i][1:]: i팀에게 배달 성공한 피자
-canTeam = Div_Team(pizzaCount, Team)         # 분배가능한 팀 리스트
+teamList = Div_Team(pizzaCount, Team)         # 분배가능한 팀 리스트
 
-dividedTeam = Cook(canTeam)      # 팀을 확정
+dividedTeam, ingredient = Cook(teamList)      # 팀을 확정
 
-Calc_Score(ingredientNum)        # 점수, ingredientNum[i] = i번 팀에 주는 피자에 들어가는 재료 개수(중복 제거)
+Calc_Score(ingredient)        # 점수, ingredientNum[i] = i번 팀에 주는 피자에 들어가는 재료 개수(중복 제거)
 
 Result(dividedTeam)              # 결과 출력, 저장 함수
 

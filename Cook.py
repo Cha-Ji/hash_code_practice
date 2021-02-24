@@ -26,17 +26,24 @@ return 값은 피자의 조합들을 담은 리스트로 반환?
         i개의 경우의 수
         j+2명 팀에 배달할 피자 개수
 # ii)
-(관 음 중) 손~
+
 """
 from Calc_Score import Calc_Score
 
 def Cook(teamList):
     # can cook?
-    
+    score = 0
     for team in teamList:
-      1
+        ingredient = [{}for _ in range(1054545271)]
+
+        for i in range(len(ingredient)):
+            thisScore = Calc_Score(ingredient[i])
+            if score < thisScore:
+                dividedTeam = team
+                score = thisScore
     # 재료로 치환
     # ingredient = []
     
-    #  
-    return 
+    #  L E  G E  N D 
+    #  맨 위 에 서 맨 뒤 됐 지
+    return dividedTeam, ingredient
