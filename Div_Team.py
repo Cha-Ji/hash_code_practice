@@ -1,4 +1,3 @@
-# (효율) 팀 배분하기
 # 가능한 팀 조합
 def Div_Team(pizzaCount, Team):
     teamList = []
@@ -13,5 +12,5 @@ def Div_Team(pizzaCount, Team):
             
             teamList.append([x,y,z])
 
-    print("가능한 팀 배열: ", teamList)
+    # print("가능한 팀 배열: ", teamList)
     return teamList

@@ -2,16 +2,17 @@
 def Result(team):
     # team[i][0] : i팀 인원
     # team[i][1:]: i팀에게 배달 성공한 피자
+    team.sort()
     length = len(team)
     
-    print("===========저장될 결과=========")
+    print("===========저장될 결과===========")
     print('팀 수: \t\t', len(team))        # 배달에 성공한 팀 수
     for i in team:
         print(i[0],"명 팀:\t" ,end=" ")   
-        for j in i:
+        for j in i[1:]:
             print(j, "\t", end=" ")
         print()
-    print("============================")
+    print("=================================")
 
     # 결과 저장
     with open("Submission.text", 'w') as f:

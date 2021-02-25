@@ -4,18 +4,15 @@ from Div_Team import Div_Team
 from Cook import Cook
 from Result import Result
 # 입력받기
-Team, pizzaCount, ingredient, ingredientNum = Read_File("a_example")
+Team, pizzaCount, ingredient, ingredientNum = Read_File("b_little_bit_of_everything.in")
 
 
 teamList = Div_Team(pizzaCount, Team)         # 분배가능한 팀 리스트
 
-Cook(teamList, ingredient)
+dividedTeam, scoreResult = Cook(teamList, ingredient)      # 팀을 확정
 
-#dividedTeam, ingredient = Cook(teamList)      # 팀을 확정
-
-#Calc_Score(ingredient)        # 점수, ingredientNum[i] = i번 팀에 주는 피자에 들어가는 재료 개수(중복 제거)
-
-#Result(dividedTeam)              # 결과 출력, 저장 함수
+print("점수: ",scoreResult)
+Result(dividedTeam)              # 결과 출력, 저장 함수
 
 """
 입력  형식

@@ -38,17 +38,17 @@ def Cook(teamList, ingredient):
     ingredient_2 = list(combinations(index, 2))
     count_2 = []
     for a, b in ingredient_2:
-        count_2.append([[a, b], len(set(ingredient_2[a]) | set(ingredient_2[b]))])
+        count_2.append([[a, b], len(set(ingredient[a]) | set(ingredient[b]))])
     
     ingredient_3 = list(combinations(index, 3))
     count_3 = []
     for a, b, c in ingredient_3:
-        count_3.append([[a, b, c], len(set(ingredient_3[a]) | set(ingredient_3[b]) | set(ingredient_3[c]))])
+        count_3.append([[a, b, c], len(set(ingredient[a]) | set(ingredient[b]) | set(ingredient[c]))])
 
     ingredient_4 = list(combinations(index, 4))
     count_4 = []
     for a, b, c, d in ingredient_4:
-        count_4.append([[a, b, c, d], len(set(ingredient_4[a]) | set(ingredient_4[b]) | set(ingredient_4[c]) | set(ingredient_4[d]))])
+        count_4.append([[a, b, c, d], len(set(ingredient[a]) | set(ingredient[b]) | set(ingredient[c]) | set(ingredient[d]))])
 
     count_2.sort(key = lambda x: -x[1])
     count_3.sort(key = lambda x: -x[1])
@@ -58,7 +58,8 @@ def Cook(teamList, ingredient):
     # print("count_4 : 4", count_4)
 
     # 결과 값?
-    finalResult = []
+    teamResult = []
+    scoreResult = 0
 
     counts = [count_2, count_3, count_4]
 
@@ -69,14 +70,17 @@ def Cook(teamList, ingredient):
             for t in range(3):
 
                 result = []
+                score = []
                 i = t
+
+                idx = set()
 
                 for _ in range(3):
                     countArray = counts[i]
 
                     temp = 0
-                    idx = set()
 
+					# team의 갯수만큼 피자를 뽑았다면? 다음 team에서 피자를 뽑는다
                     for index, value in countArray:
                         if team[i] <= temp:
                             break
@@ -94,29 +98,18 @@ def Cook(teamList, ingredient):
                         if not isIn:
                             idx = idx | tempIdx
                             temp += 1
-                            result.append(value)
-
+                            result.append([i + 2] + list(index))
+                            score.append(value)
                     i = (i + 1 + r) % 3
 
-                finalResult.append(result)
-    print(finalResult)
-    print(len(finalResult))
+                if Calc_Score(score) > scoreResult:
+                    scoreResult = Calc_Score(score)
+                    teamResult = result
+                    
+    # print(finalResult)
+    # print(scoreResult)
 
     # 6개의 배열 중에 가장 스코어가 높은 것을 결과로 가져야한다
     # 문제 : 결과값 출력으로 어떤 피자인지 줘야한다 (우리는 이를 넘겨주지 않았음... 결과 값만 도출해냄)
-
-
-
     
-
-    # 정답 : 2팀(3, 2)      : 5재료, 
-    #       3팀(3, 3, 2)    : 7재료
-
-    # dividedTeam = [[2,2,1],[3,0,4]]
-    # team[i][0] : i팀 인원
-    # team[i][1:]: i팀에게 배달 성공한 피자
-    
-
-    # https://discuss.codechef.com/t/discussion-on-google-hashcode-practice-question-2021/83844
-    # ingredient = [1,2,3]
-    # return dividedTeam, ingredient
+    return teamResult, scoreResult
